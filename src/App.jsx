@@ -1,32 +1,19 @@
-import { useState } from 'react'
+
 import './App.css';
-import { flashcards } from './flashcards';
-import { getRandomIndex } from './utils';
 import { CardComponent } from './CardComponent';
+import { useQuiz } from './QuizContext';
+import { useTheme } from './Theme-hook';
 
 
 function App() {
-  const [isStarted, setIsStarted] = useState(false);
-  const [card, setCard] = useState(null);
-
-  const handleStart = () => {
-    setIsStarted(true);
-    const selectedIndex = getRandomIndex(flashcards.length);
-    setCard(flashcards[selectedIndex]);
-    console.log(card, isStarted);
-  };
-  
-  const handleNextQuestion = () => {
-    const selectedIndex = getRandomIndex(flashcards.length);
-    setCard(flashcards[selectedIndex]);
-    console.log(card, isStarted);
-  };
-
+  const { isStarted, handleStart, handleNextQuestion } = useQuiz();
+  const { theme, toggleTheme } = useTheme();
   return (
     <>
-      <h1>Flashcards Quizzz ${isStarted ? 'started' : 'not started'}</h1>
+      <h1>Flashcards Quizzz: {theme}</h1>
+      <button onClick={toggleTheme}>Toggle Theme</button>
       <div>
-        {isStarted && <CardComponent card={card} />}
+        {isStarted && <CardComponent />}
       </div>
       {!isStarted && <button onClick={handleStart}>Start</button>}
       {isStarted && <button onClick={handleNextQuestion}>Next Question</button>}
