@@ -8,9 +8,10 @@ import { useTheme } from './Theme-hook';
 function App() {
   const { isStarted, handleStart, handleNextQuestion } = useQuiz();
   const { theme, toggleTheme } = useTheme();
+  const apiKey = import.meta.env.VITE_DEMO_API_KEY;
   return (
     <>
-      <h1>Flashcards Quizzz: {theme}</h1>
+      <h1>Flashcards Quizzz: {apiKey}</h1>
       <button onClick={toggleTheme}>Toggle Theme</button>
       <div>
         {isStarted && <CardComponent />}
