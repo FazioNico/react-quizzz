@@ -15,7 +15,7 @@ const QuizContext = createContext();
     handleStart,
     handleNextQuestion,`
  * @param {*} param0 
- * @returns 
+ * @returns Provider react
  */
 export const QuizProvider = ({ children }) => {
   const [isStarted, setIsStarted] = useState(false);

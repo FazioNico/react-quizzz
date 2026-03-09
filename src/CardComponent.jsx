@@ -4,7 +4,7 @@ import { useTheme } from "./Theme-hook";
 
 /**
  * Component to show question and answer of flashcard
- * @returns 
+ * @returns html react component
  */
 export const CardComponent = () => {
   const { card } = useQuiz();

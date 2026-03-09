@@ -6,7 +6,6 @@ const ThemeContext = createContext();
  * Provider that expost Theme context with 
  * `theme` and `toggleTheme` function to change theme
  * @param {*} param0 
- * @returns 
  */
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState('light');
