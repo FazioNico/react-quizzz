@@ -2,6 +2,10 @@ import { useState } from "react";
 import { useQuiz } from "./QuizContext";
 import { useTheme } from "./Theme-hook";
 
+/**
+ * Component to show question and answer of flashcard
+ * @returns 
+ */
 export const CardComponent = () => {
   const { card } = useQuiz();
   const [viewAnswer, setViewAnswer] = useState(false);
