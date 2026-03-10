@@ -14,7 +14,7 @@ function App() {
 
       <header className="topbar">
         <div>
-          <h1>JS Quizzz</h1>
+          <h1>JS Quizzz - deploy FB</h1>
         </div>
         <button
           className="ghost-button"
