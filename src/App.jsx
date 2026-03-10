@@ -1,27 +1,80 @@
-
 import './App.css';
 import { CardComponent } from './CardComponent';
 import { useQuiz } from './QuizContext';
 import { useTheme } from './Theme-hook';
 
-
 function App() {
   const { isStarted, handleStart, handleNextQuestion } = useQuiz();
   const { theme, toggleTheme } = useTheme();
-  const apiKey = import.meta.env.VITE_DEMO_API_KEY;
+
   return (
-    <>
-      <h1 className="bg-linear-to-r from-cyan-400 via-blue-500 to-indigo-600 bg-clip-text text-5xl font-extrabold tracking-tight text-transparent">
-        Flashcards Quizzz: {apiKey}
-      </h1>
-      <button onClick={toggleTheme}>Toggle Theme</button>
-      <div>
-        {isStarted && <CardComponent />}
-      </div>
-      {!isStarted && <button onClick={handleStart}>Start</button>}
-      {isStarted && <button onClick={handleNextQuestion}>Next Question</button>}
-    </>
-  )
+    <main className={`app-shell ${theme === 'dark' ? 'theme-dark' : 'theme-light'}`}>
+      <div className="app-shell__glow app-shell__glow--cyan" />
+      <div className="app-shell__glow app-shell__glow--lime" />
+
+      <header className="topbar">
+        <div>
+          <p className="eyebrow">Flashcards Quizzz</p>
+          <h1>Cards modernes, lisibles et prêtes pour l&apos;attention.</h1>
+        </div>
+        <button
+          className="ghost-button"
+          type="button"
+          onClick={toggleTheme}
+        >
+          {theme === 'light' ? 'Mode sombre' : 'Mode clair'}
+        </button>
+      </header>
+
+      <section className="hero-panel">
+        <div className="hero-copy">
+          <span className="hero-badge">Interface sticky</span>
+          <p>
+            Une présentation minimaliste avec halo fluo, contraste propre et focus
+            total sur la carte active.
+          </p>
+        </div>
+
+        <div className="control-dock">
+          {!isStarted ? (
+            <button className="primary-button" type="button" onClick={handleStart}>
+              Lancer le quiz
+            </button>
+          ) : (
+            <button className="primary-button" type="button" onClick={handleNextQuestion}>
+              Carte suivante
+            </button>
+          )}
+        </div>
+      </section>
+
+      <section className="board-layout">
+        <aside className="sticky-panel">
+          <span className="sticky-panel__label">Direction</span>
+          <h2>Minimal, clean, fluorescent.</h2>
+          <p>
+            Le header reste visible, les actions sont stables, et la carte garde
+            un rendu premium sur desktop comme mobile.
+          </p>
+        </aside>
+
+        <div className="card-stage">
+          {isStarted ? (
+            <CardComponent />
+          ) : (
+            <div className="empty-state">
+              <span className="empty-state__badge">Ready</span>
+              <h2>Appuie sur lancer pour afficher la première card.</h2>
+              <p>
+                La carte prendra le centre, avec une lecture claire de la question
+                puis de la réponse.
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
+    </main>
+  );
 }
 
-export default App
+export default App;

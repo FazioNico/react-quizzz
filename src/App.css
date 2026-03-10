@@ -1,42 +1,317 @@
-#root {
-  max-width: 1280px;
+.app-shell {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: 1.5rem;
+  color: var(--text-primary);
+}
+
+.app-shell__glow {
+  position: fixed;
+  z-index: 0;
+  border-radius: 999px;
+  filter: blur(90px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.app-shell__glow--cyan {
+  top: -5rem;
+  right: -4rem;
+  width: 18rem;
+  height: 18rem;
+  background: color-mix(in srgb, var(--accent) 80%, white 20%);
+}
+
+.app-shell__glow--lime {
+  bottom: -6rem;
+  left: -5rem;
+  width: 20rem;
+  height: 20rem;
+  background: color-mix(in srgb, var(--accent-2) 75%, white 25%);
+}
+
+.topbar,
+.hero-panel,
+.board-layout {
+  position: relative;
+  z-index: 1;
+}
+
+.topbar {
+  position: sticky;
+  top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 auto 1.5rem;
+  max-width: 1180px;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 1.5rem;
+  background: var(--surface-strong);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 20px 60px var(--shadow-color);
+}
+
+.eyebrow {
+  margin: 0 0 0.35rem;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.topbar h1 {
+  margin: 0;
+  max-width: 14ch;
+  font-size: clamp(2.4rem, 5vw, 4.8rem);
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+}
+
+.hero-panel {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin: 0 auto 2rem;
+  max-width: 1180px;
+  padding: 0 0.35rem;
+}
+
+.hero-copy {
+  max-width: 38rem;
+}
+
+.hero-copy p,
+.sticky-panel p,
+.empty-state p,
+.flashcard__answer p {
+  color: var(--text-muted);
+}
+
+.hero-badge,
+.empty-state__badge,
+.sticky-panel__label,
+.flashcard__tag,
+.flashcard__counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  background: var(--pill-surface);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.control-dock {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.board-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 290px) minmax(0, 1fr);
+  gap: 1.5rem;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  max-width: 1180px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.sticky-panel {
+  position: sticky;
+  top: 7.2rem;
+  align-self: start;
+  padding: 1.4rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 1.5rem;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--surface) 80%, transparent), transparent),
+    var(--surface);
+  box-shadow: inset 0 1px 0 var(--highlight);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.sticky-panel h2,
+.empty-state h2,
+.flashcard h2 {
+  margin: 0.85rem 0;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.card-stage {
+  min-height: 60vh;
+}
+
+.empty-state,
+.flashcard {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1.4rem, 2vw, 2rem);
+  border: 1px solid var(--border-strong);
+  border-radius: 2rem;
+  background:
+    radial-gradient(circle at top right, var(--highlight-strong), transparent 30%),
+    linear-gradient(180deg, var(--surface-strong), var(--surface));
+  box-shadow: 0 24px 80px var(--shadow-color);
+}
+
+.empty-state {
+  min-height: 24rem;
+  display: grid;
+  align-content: center;
+}
+
+.flashcard {
+  min-height: 28rem;
+}
+
+.flashcard__shine {
+  position: absolute;
+  inset: -30% auto auto 55%;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, var(--highlight-strong), transparent 70%);
+  pointer-events: none;
+}
+
+.flashcard__meta,
+.flashcard__actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.flashcard__body {
+  position: relative;
+  z-index: 1;
+  margin: 2rem 0;
+}
+
+.flashcard__label {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.flashcard h2 {
+  max-width: 12ch;
+  font-size: clamp(2.4rem, 7vw, 5.5rem);
+}
+
+.flashcard__answer {
+  margin-top: 1.5rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid transparent;
+  border-radius: 1.3rem;
+  background: transparent;
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease,
+    border-color 220ms ease,
+    background-color 220ms ease;
+}
+
+.flashcard__answer.is-visible {
+  border-color: var(--border-soft);
+  background: var(--answer-surface);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.primary-button,
+.secondary-button,
+.ghost-button {
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0.9rem 1.15rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.ghost-button:hover {
+  transform: translateY(-1px);
+}
+
+.primary-button {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #06131a;
+  box-shadow: 0 12px 30px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.secondary-button {
+  background: var(--pill-surface);
+  border-color: var(--border-soft);
+  color: var(--text-primary);
+}
+
+.ghost-button {
+  background: transparent;
+  border-color: var(--border-soft);
+  color: var(--text-primary);
+}
+
+@media (max-width: 860px) {
+  .topbar,
+  .hero-panel,
+  .board-layout {
+    max-width: 42rem;
   }
-  to {
-    transform: rotate(360deg);
+
+  .topbar,
+  .hero-panel {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .board-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sticky-panel {
+    position: static;
+  }
+
+  .flashcard h2 {
+    max-width: none;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media (max-width: 560px) {
+  .app-shell {
+    padding: 1rem;
   }
-}
 
-.card {
-  padding: 2em;
-}
+  .topbar {
+    top: 0.75rem;
+    padding: 1rem;
+  }
 
-.read-the-docs {
-  color: #888;
+  .flashcard,
+  .empty-state {
+    border-radius: 1.4rem;
+  }
 }
