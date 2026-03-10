@@ -14,8 +14,7 @@ function App() {
 
       <header className="topbar">
         <div>
-          <p className="eyebrow">Flashcards Quizzz</p>
-          <h1>Cards modernes, lisibles et prêtes pour l&apos;attention.</h1>
+          <h1>JS Quizzz</h1>
         </div>
         <button
           className="ghost-button"
